@@ -7,7 +7,7 @@ function addTask() {
     const dateValue = taskDate.value;
 
 
-//Popup message if there's no input
+//Alert message if there's no input
 if (taskText === "" || dateValue === "") {
     alert("Please enter task and date.");
     return;
