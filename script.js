@@ -39,7 +39,6 @@ function addTask() {
     // reminder berdasarkan tarikh
     const today = new Date();
     const dueDate = new Date(dateValue);
-
     const diffTime = dueDate - today;
     const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
 
@@ -61,7 +60,6 @@ function addTask() {
     // edit & update button
     const editBtn = li.querySelector(".edit-btn");
     const updateBtn = li.querySelector(".update-btn");
-
     const taskTextSpan = li.querySelector(".task-text");
     const dateDiv = li.querySelector(".date");
 
