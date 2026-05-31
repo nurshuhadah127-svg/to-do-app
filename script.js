@@ -65,7 +65,7 @@ function addTask() {
 
     // edit task
     editBtn.addEventListener("click", function() {
-
+        // Sends the text back up to the main input fields
         taskInput.value = taskTextSpan.textContent;
         taskDate.value = dateDiv.textContent;
 
@@ -75,7 +75,7 @@ function addTask() {
 
     // update task
     updateBtn.addEventListener("click", function() {
-
+        // Grabs the newly typed text from the main input fields
         const newTask = taskInput.value.trim();
         const newDate = taskDate.value;
 
@@ -84,9 +84,11 @@ function addTask() {
             return;
         }
 
+        // Updates the list item
         taskTextSpan.textContent = newTask;
         dateDiv.textContent = newDate;
 
+        // Clears the input fields again
         taskInput.value = "";
         taskDate.value = "";
 
