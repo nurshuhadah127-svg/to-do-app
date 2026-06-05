@@ -16,17 +16,16 @@ function addTask() {
     const li = document.createElement("li");
 
     li.innerHTML = `
-    <div class="task-top">
-        <span class="task-text">${taskText}</span>
-        <span class="star">☆</span>
-    </div>
+        <button class="delete-btn">Delete 🗑️</button>
 
-    <div class="date">${dateValue}</div>
+        <span class="task-text">${taskText}
+        <span class="star-icon">☆</span></span>
 
-    <div class="task-bottons">
+        <span class="task-date">📅 ${dateValue}</span>
+
+    <div class="action-buttons">
         <button class="edit-btn">Edit</button>
-        <button class="update-btn" style="display:none;">Update</button>
-        <button class="delete-btn">Delete</button>
+        <button class="update-btn">Update</button>
     </div>
     `;
 
