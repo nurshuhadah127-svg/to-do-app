@@ -2,6 +2,7 @@ const taskInput = document.getElementById("taskInput");
 const taskDate = document.getElementById("taskDate");
 const taskList = document.getElementById("taskList");
 
+//add task
 function addTask() {
     const taskText = taskInput.value.trim();
     const dateValue = taskDate.value;
@@ -18,19 +19,22 @@ function addTask() {
     li.innerHTML = `
         <button class="delete-btn">Delete 🗑️</button>
 
-        <span class="task-text">${taskText}
-        <span class="star-icon">☆</span></span>
+        <span class="task-text">${taskText}</span> 
+        
+        <span class="star-icon">☆</span>
 
         <span class="task-date">📅 ${dateValue}</span>
 
     <div class="action-buttons">
         <button class="edit-btn">Edit</button>
-        <button class="update-btn">Update</button>
+        <button class="update-btn" style="display:none;">Update</button>
     </div>
     `;
 
     // add task to list
     taskList.appendChild(li);
+
+    setupTaskFeatures(li);
 
     // popup selepas tambah task
     alert("Task Added Successfully!");
@@ -49,24 +53,40 @@ function addTask() {
     taskInput.value = "";
     taskDate.value = "";
 
-    // delete button
+}
+
+    // task feature
+    function setupTaskFeatures(li) {
+
     const deleteBtn = li.querySelector(".delete-btn");
-
-    deleteBtn.addEventListener("click", function() {
-        li.remove();
-    });
-
-    // edit & update button
     const editBtn = li.querySelector(".edit-btn");
     const updateBtn = li.querySelector(".update-btn");
     const taskTextSpan = li.querySelector(".task-text");
-    const dateDiv = li.querySelector(".date");
+    const taskDateSpan = li.querySelector(".task-date");
+    const star = li.querySelector(".star-icon");
+
+    //delete
+    deleteBtn.addEventListener("click", function() {
+        if (confirm("Delete this task?")){
+            li.remove();
+        }
+    });
+
+    //star task
+    star.addEventListener("click", function() {
+        if (star.textContent === "☆") {
+            star.textContent = "⭐";
+        } else {
+            star.textContent = "☆";
+        }
+    });
 
     // edit task
     editBtn.addEventListener("click", function() {
+
         // Sends the text back up to the main input fields
         taskInput.value = taskTextSpan.textContent;
-        taskDate.value = dateDiv.textContent;
+        taskDate.value = taskDateSpan.textContent.replace("📅", "");
 
         editBtn.style.display = "none";
         updateBtn.style.display = "inline-block";
@@ -85,7 +105,7 @@ function addTask() {
 
         // Updates the list item
         taskTextSpan.textContent = newTask;
-        dateDiv.textContent = newDate;
+        taskDateSpan.textContent = "📅 " + newDate;
 
         // Clears the input fields again
         taskInput.value = "";
