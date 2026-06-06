@@ -1,6 +1,7 @@
 const taskInput = document.getElementById("taskInput");
 const taskDate = document.getElementById("taskDate");
 const taskList = document.getElementById("taskList");
+const addButton = document.querySelector(".input-section button");
 
 //add task
 function addTask() {
@@ -87,7 +88,9 @@ function addTask() {
 
         // Sends the text back up to the main input fields
         taskInput.value = taskTextSpan.textContent;
-        taskDate.value = taskDateSpan.textContent.replace("📅", "");
+        taskDate.value = taskDateSpan.textContent.replace("📅", "").trim();
+
+        addButton.style.display = "none";
 
         editBtn.style.display = "none";
         updateBtn.style.display = "inline-block";
@@ -114,6 +117,8 @@ function addTask() {
 
         editBtn.style.display = "inline-block";
         updateBtn.style.display = "none";
+
+        addButton.style.display = "inline-block";
 
         alert("Task Updated Successfully!");
     });
