@@ -19,9 +19,10 @@ function addTask() {
     li.innerHTML = `
         <button class="delete-btn">Delete 🗑️</button>
 
+        <div class="task-header">
         <span class="task-text">${taskText}</span> 
-        
         <span class="star-icon">☆</span>
+        </div>
 
         <span class="task-date">📅 ${dateValue}</span>
 
