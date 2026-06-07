@@ -21,15 +21,32 @@
 
                 <input type="date" id="taskDate">
 
-                <button onclick="addTask()">
+                <button id="addBtn" onclick="addTask()">
                     
-                    + Add Task</button>
+                    <i class="fa-solid fa-plus"></i>+ Add Task</button>
             </div>
 
-            <ul id="taskList"></ul>
+            <ul id="taskList">
+
+                <li>
+                    
+                    <button class="delete-btn">Delete 🗑️</button>
+
+                    <span class="task-text">Finished Assignment <span class="star-icon">☆</span></span>
+
+                    <span class="task-date">📅 2024-06-30</span>
+
+                    <div class="action-buttons">
+                        <button class="edit-btn">Edit</button>
+                        <button class="update-btn">Update</button>
+                    </div>
+                </li>
+
+            </ul>
 
         </div>
 
+        <script src="https://cdn.jsdeliver.net/npm/sweetalert2@11"></script>
         <script src="script.js"></script>
         
     </body>
