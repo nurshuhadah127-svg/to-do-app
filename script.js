@@ -11,7 +11,12 @@ function addTask() {
 
     // Alert message if there's no input
     if (taskText === "" || dateValue === "") {
-        alert("Please enter task and date.");
+        Swal.fire({
+            icon: "warning",
+            title: "Missing Information",
+            text: "Please enter task and date.",
+            confirmButtonColor: "#d98ca4"
+        });
         return;
     }
 
@@ -39,8 +44,14 @@ function addTask() {
 
     setupTaskFeatures(li);
 
-    // popup selepas tambah task
-    alert("Task Added Successfully!");
+    // success popup
+    Swal.fire({
+        icon: "success",
+        title: "Task Added!",
+        text: "Task Added Successfully.",
+        timer: 1500,
+        showConfirmButton: false
+    });
 
     // reminder berdasarkan tarikh
     const today = new Date();
@@ -49,7 +60,14 @@ function addTask() {
     const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
 
     if (diffDays === 1) {
-        alert(`Reminder: "${taskText}" is due tomorrow!`);
+        setTimeout(() => {
+            Swal.fire({
+                icon: "info",
+                title: "Reminder",
+                text: `"${taskText}" is due tomorrow!`,
+                confirmButtonColor: "#d98ca4"
+            });
+        }, 1600);
     }
 
     // clear input
@@ -70,9 +88,29 @@ function addTask() {
 
     //delete
     deleteBtn.addEventListener("click", function() {
-        if (confirm("Delete this task?")){
-            li.remove();
-        }
+         Swal.fire({
+            title: "Delete Task?",
+            text: "This action cannot be undone.",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonText: "Yes, Delete",
+            cancelButtonText: "Cancel",
+            confirmButtonColor: "#e57373",
+            cancelButtonColor: "#999"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                li.remove();
+
+                Swal.fire({
+                    icon: "success",
+                    title: "Deleted!",
+                    text: "Task removed successfully.",
+                    timer: 1500,
+                    showConfirmButton: false
+    
+                });
+            }
+        });
     });
 
     //star task
@@ -94,7 +132,14 @@ function addTask() {
 
         //if theres other task being edited
         if (editingTask !== null){
-            alert("Please finish updating the current task first!");
+
+            Swal.fire({
+                icon: "warning",
+                title: "Finish Current Edit",
+                text: "Please finish updating the current task first!",
+                confirmButtonColor: "#d98ca4"
+            })
+        
             return;
         }
 
@@ -117,7 +162,13 @@ function addTask() {
         const newDate = taskDate.value;
 
         if (newTask === "" || newDate === "") {
-            alert("Please enter task and date.");
+            Swal.fire({
+                icon: "warning",
+                title: "Missing Information",
+                text: "Please enter task and date.",
+                confirmButtonColor: "#d98ca4"
+            });
+            
             return;
         }
 
@@ -136,6 +187,12 @@ function addTask() {
 
         editingTask = null;
 
-        alert("Task Updated Successfully!");
+        Swal.fire({
+            icon: "success",
+            title: "Task Updated!",
+            text: "Task Updated Successfully!",
+            timer: 1500,
+            showConfirmButton: false
+        });
     });
 }
