@@ -2,6 +2,7 @@ const taskInput = document.getElementById("taskInput");
 const taskDate = document.getElementById("taskDate");
 const taskList = document.getElementById("taskList");
 const addButton = document.querySelector(".input-section button");
+let editingTask = null;
 
 //add task
 function addTask() {
@@ -78,13 +79,26 @@ function addTask() {
     star.addEventListener("click", function() {
         if (star.textContent === "☆") {
             star.textContent = "⭐";
+
+            taskList.prepend(li);
+
         } else {
             star.textContent = "☆";
+
+            taskList.appendChild(li);
         }
     });
 
     // edit task
     editBtn.addEventListener("click", function() {
+
+        //if theres other task being edited
+        if (editingTask !== null){
+            alert("Please finish updating the current task first!");
+            return;
+        }
+
+        editingTask = li;
 
         // Sends the text back up to the main input fields
         taskInput.value = taskTextSpan.textContent;
@@ -119,6 +133,8 @@ function addTask() {
         updateBtn.style.display = "none";
 
         addButton.style.display = "inline-block";
+
+        editingTask = null;
 
         alert("Task Updated Successfully!");
     });
