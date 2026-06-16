@@ -98,7 +98,7 @@ li:hover {
 }
 
 li:nth-child(odd) {
-    background-color: #ffffff;
+    background-color: #yellow;
     border: 3px solid #ffd1dc;
     border-left: 12px solid #ffb6c1;
 }
