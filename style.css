@@ -99,7 +99,7 @@ li:hover {
 
 li:nth-child(odd) {
     background-color: #yellow;
-    border: 3px solid #ffd1dc;
+    border: 3px solid #yellow;
     border-left: 12px solid #ffb6c1;
 }
 
